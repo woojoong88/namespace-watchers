@@ -1,0 +1,35 @@
+image:
+  registry: docker.io
+  repository: woojoong/namespace-watcher-controller
+  # tag: 0.0.1
+  pullPolicy: Always
+  pullSecrets: []
+
+nameOverride: ""
+fullnameOverride: ""
+
+metadata:
+  deploymentAnnotations: []
+  deploymentLabels: []
+
+replicaCount: 1
+
+serviceAccount:
+  name: namespace-watcher-controller-sa
+
+security:
+  podSecurityContext: {}
+  securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - "ALL"
+
+nodeSelector:
+  deployment: {}
+
+configs:
+  excludedNamespaces:
+    - kube-system
+    - kube-public
+    - kube-node-lease
